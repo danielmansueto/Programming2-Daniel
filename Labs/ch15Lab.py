@@ -2,49 +2,67 @@
 Complete the chapter lab at http://programarcadegames.com/index.php?chapter=lab_spell_check
 '''
 
-file = open("../Problem Sets/dictionary.txt")
+print("Chapter 15 Lab:")
+print()
 
+import re
 dictionary = []
+
+def split_line(line):
+    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
+
+# Arraying the chapter
+file = open('../Problem Sets/dictionary.txt')
+
 for line in file:
     line = line.strip()
     dictionary.append(line)
 
 file.close()
-file = open('../Problem Sets/AliceInWonderLand.txt')
+
+print('--- Linear Search ---')
+
+
+file = open('AliceInWonderLand200.txt')
 line_number = 0
 
 for line in file:
     line = line.strip().upper()
     line_number += 1
     words = split_line(line)
+    for word in words:
+        i = 0
+        while i < (len(dictionary)) and word != dictionary[i]:
+            i += 1
+        if i >= len(dictionary):
+            print('Found', word, 'misspelled at line', line_number)
 
+file.close()
 
-import re
+print('--- Binary Search ---')
 
+file = open('AliceInWonderLand200.txt')
+line_number = 0
 
-# This function takes in a line of text and returns
-# a list of words in the line.
-def split_line(line):
-    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
+for line in file:
+    line = line.strip().upper()
+    line_number += 1
+    words = split_line(line)
+    for word in words:
+        lower_bound = 0
+        upper_bound = len(dictionary)
+        found = False
+        key = word.upper()
 
-key = "THEODORA THE WICKED"
-lower_bound = 0
-upper_bound = len(villains)
-found = False
-loops = 0
+        while lower_bound <= upper_bound and not found:
+            middle_pos = (upper_bound + lower_bound) // 2
+            if dictionary[middle_pos] < key:
+                lower_bound = middle_pos + 1
+            elif dictionary[middle_pos] > key:
+                upper_bound = middle_pos - 1
+            else:
+                found = True
+        if not found:
+            print('Found', word, 'misspelled at line', line_number)
 
-# loop until we find it (or we go through the entire list)
-while lower_bound <= upper_bound and not found:
-    loops += 1
-    middle_pos = (upper_bound + lower_bound) // 2
-    if villains[middle_pos] < key:
-        lower_bound = middle_pos + 1
-    elif villains[middle_pos] > key:
-        upper_bound = middle_pos - 1
-    else:
-        found = True
-
-if found:
-    print(key, "was found at position", middle_pos)
-else:
-    print(key, "was not found after", loops, "loops")
+file.close()
