@@ -1,7 +1,22 @@
 
 #Turtle Recursion (25pts)
 
-#1)  Using the turtle library, create the H fractal pattern according to the file shown in the data folder. (10pts)  
+#1)  Using the turtle library, create the H fractal pattern according to the file shown in the data folder. (10pts)
+
+print()
+print("Problem #1:")
+print()
+import turtle
+
+def Hfractal(x, y, size, depth):
+    my_turtle.penup()
+    my_turtle.goto(x, y)
+    my_turtle.pendown()
+    my_turtle.setheading(90)
+    my_turtle.forward(size)
+    my_turtle.right(90)
+    my_turtle.forward(100)
+    pos1 = my_turtle.pos()
 
 #2)  Using the turtle library, create any of the other recursive patterns in the data folder. 
 #  Challenge yourself to match your pattern as closely as you can to the image.  (10pts)

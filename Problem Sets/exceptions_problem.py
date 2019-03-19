@@ -14,3 +14,24 @@
 # (3pts) keeps asking for inputs until they are valid (see while loop from notes)
 # (4pts) calculate the force of gravity in Newtons and print the result to the user in scientific notation to two decimals.
 
+print()
+print("Universal Gravity Calculator")
+
+def force():
+    done = False
+    while not done:
+        try:
+            m1 = int(input("Enter the first mass:"))
+            m2 = int(input("Enter the second mass:"))
+            distance = int(input("What is the distance between the two objects:"))
+            G = 6.67e-11
+            F = ((G * m1 * m2) / (distance ** 2))
+            done = True
+        except ValueError:
+            print("You entered an invalid number")
+        except ZeroDivisionError:
+            print("You created a black hole")
+    return F
+
+print()
+print('Force = {:.2e}'.format(force()), "Newtons")
