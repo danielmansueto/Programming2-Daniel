@@ -28,7 +28,7 @@ controlled(0, 10)
 import turtle
 
 my_turtle = turtle.Turtle()
-my_turtle.speed(5)
+my_turtle.speed(0)
 my_turtle.width(3)
 my_turtle.shape("turtle")
 my_screen = turtle.Screen()
@@ -110,7 +110,28 @@ def bracket_recursion(x, y, size, depth):
 
 #rect(200,100)
 #rect_recursive(15, 50, 20, line_width=1)
-bracket_recursion(-250, 0, 150, 5)
+#bracket_recursion(-250, 0, 150, 5)
+
+def tree(length, n):
+    if length < (length / n):
+        return
+    turtle.forward(length)
+    turtle.left(45)
+    tree(length * 0.5, length / n)
+    turtle.left(20)
+    tree(length * 0.5, length / n)
+    turtle.right(75)
+    tree(length * 0.5, length / n)
+    turtle.right(20)
+    tree(length * 0.5, length / n)
+    turtle.left(30)
+    turtle.backward(length)
+    return
+
+
+turtle.left(90)
+turtle.backward(30)
+tree(200, 4)
 
 
 my_screen.exitonclick()
