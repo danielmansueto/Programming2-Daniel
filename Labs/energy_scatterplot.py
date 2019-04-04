@@ -22,3 +22,36 @@ Challenge (for fun if you have time... not required):
 - Make schools in bottom 10 percent GHG Intesity show in red.
 - Add colleges and universities (use a different marker type)
 '''
+
+import csv
+import matplotlib.pyplot as plt
+
+with open('Chicago_Energy_Benchmarking.csv') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+
+header = data.pop(0)
+print(header)
+
+greenhouse = []
+square_footage = []
+school_name = []
+
+for school in data:
+    if school[6] == "K-12 School":
+        try:
+            ghg = float(school(20))
+            square_feet = float(school(7))
+            school_name.append(school)
+            greenhouse.append(ghg)
+            square_footage.append(square_feet)
+        except:
+            print(school[0], school[2], "didn't work")
+
+plt.figure(1, tight_layout=True, figsize=(12, 8), facecolor="lightyellow")
+plt.scatter(square_footage, greenhouse, color="lightblue")
+
+
+
+
+plt.show()
