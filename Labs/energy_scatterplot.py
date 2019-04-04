@@ -25,6 +25,7 @@ Challenge (for fun if you have time... not required):
 
 import csv
 import matplotlib.pyplot as plt
+import numpy as np
 
 with open('Chicago_Energy_Benchmarking.csv') as f:
     reader = csv.reader(f)
@@ -48,10 +49,28 @@ for school in data:
         except:
             print(school[0], school[2], "didn't work")
 
+for x in school_name:
+    x[7] = float(x[7])
+    x[20] = float(x[20])
+
+sort = sorted(school_name, key=lambda x: x[7]/x[20])
+print(sort)
+
 plt.figure(1, tight_layout=True, figsize=(12, 8), facecolor="lightyellow")
 plt.scatter(square_footage, greenhouse, color="lightblue")
 
+plt.xlabel('Building Square Footage')
+plt.ylabel('Greenhouse Gas Emissions')
+plt.title('Energy Emissions of Chicago K-12 Schools')
 
+# best fit line
+'''
+m, b = np.polyfit(square_footage, greenhouse, 1)
 
+fit_x = [0, 100]
+fit_y = [b, 100 * m + b]
+
+plt.plot( fit_x, fit_y)
+'''
 
 plt.show()
