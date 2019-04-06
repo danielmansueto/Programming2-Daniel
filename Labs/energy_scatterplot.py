@@ -41,36 +41,72 @@ school_name = []
 for school in data:
     if school[6] == "K-12 School":
         try:
-            ghg = float(school(20))
-            square_feet = float(school(7))
-            school_name.append(school)
+            ghg = float(school[20])
+            square_feet = float(school[7])
+            school_name.append(school[2])
             greenhouse.append(ghg)
             square_footage.append(square_feet)
         except:
             print(school[0], school[2], "didn't work")
 
-for x in school_name:
-    x[7] = float(x[7])
-    x[20] = float(x[20])
+print(school_name)
+print(greenhouse)
+print(square_footage)
 
-sort = sorted(school_name, key=lambda x: x[7]/x[20])
-print(sort)
 
-plt.figure(1, tight_layout=True, figsize=(12, 8), facecolor="lightyellow")
+plt.figure(1, tight_layout=True, figsize=(12, 7), facecolor="lightgrey")
 plt.scatter(square_footage, greenhouse, color="lightblue")
 
 plt.xlabel('Building Square Footage')
 plt.ylabel('Greenhouse Gas Emissions')
 plt.title('Energy Emissions of Chicago K-12 Schools')
 
+# parker
+parker = [x for x in data[school_name.index("Francis W Parker School")]]
+print(parker)
+
+fwp_ghg = int(parker[20])
+fwp_sqft = int(parker[7])
+print(fwp_ghg)
+print(fwp_sqft)
+
+plt.scatter(fwp_sqft, fwp_ghg, color="blue", label='Francis Parker School')
+
+# latin
+latin = [x for x in data[school_name.index("Latin School of Chicago Upper School")]]
+#print(latin)
+
+latin_ghg = int(latin[20])
+latin_sqft = int(latin[7])
+
+plt.scatter(latin_sqft, latin_ghg, color="red", label='Latin Upper School')
+
+# top and bottom 3 schools
+
+new_data = []
+for i in range(len(school_name)):
+    new_data.append([school_name[i], greenhouse[i], square_footage[i]])
+
+print(new_data)
+print(new_data[0])
+print(new_data[0][1]/new_data[0][2])
+new_data.sort(key=lambda x: x[1]/x[2])
+print("THIS")
+print(new_data)
+
+for i in range(3):
+    plt.annotate(new_data[i][0], xy=(float(new_data[i][1]), float(new_data[i][2])), color='orange')
+
+for i in range(3):
+    plt.annotate(new_data[-i - 1][0], xy=(float(new_data[-i - 1][1]), float(new_data[-i - 1][2])), color='purple')
+
 # best fit line
-'''
 m, b = np.polyfit(square_footage, greenhouse, 1)
 
-fit_x = [0, 100]
-fit_y = [b, 100 * m + b]
+fit_x = [0, 700000]
+fit_y = [b, 700000 * m]
+plt.plot(fit_x, fit_y)
 
-plt.plot( fit_x, fit_y)
-'''
 
+plt.legend()
 plt.show()
