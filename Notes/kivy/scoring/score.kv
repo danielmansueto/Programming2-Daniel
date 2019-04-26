@@ -1,0 +1,57 @@
+<CustomButton@Button>:
+    # CustomButton is a child of the Button Class
+    font_size: 200
+
+<CustomLabel@Label>:
+    font_size: 50
+    color: [1, 1, 1, 1]
+<CustomBox@BoxLayout>:
+    orientation: "horizontal"
+
+<ScoreLayout>:
+    orientation: "vertical"
+    home: home
+    away: away
+    id: scorer
+    CustomBox:
+        CustomLabel:
+            text: "SCORE"
+            size_hint_x: 3
+            font_size: 300
+        CustomButton:
+            text: "RESET"
+            on_press: scorer.reset()
+            size_hint_x: 1
+            font_size: 50
+
+    CustomBox:
+        CustomLabel:
+            text: "HOME"
+            font_size: 100
+        CustomLabel:
+            text: "AWAY"
+            font_size: 100
+
+    CustomBox:
+        CustomLabel:
+            id: home
+            text: "0"
+            font_size: 200
+        CustomLabel:
+            id: away
+            text: "0"
+            font_size: 200
+
+    CustomBox:
+        CustomButton:
+            on_press: scorer.change_score(home, -1)
+            text: "-"
+        CustomButton:
+            on_press: scorer.change_score(home, 1)
+            text: "+"
+        CustomButton:
+            on_press: scorer.change_score(away, -1)
+            text: "-"
+        CustomButton:
+            on_press: scorer.change_score(away, 1)
+            text: "+"

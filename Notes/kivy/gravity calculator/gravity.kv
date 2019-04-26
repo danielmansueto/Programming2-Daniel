@@ -1,0 +1,26 @@
+<GravityCalculatorLayout>:
+    orientation: "vertical"
+    id: calculator
+    mass1: mass1
+    mass2: mass2
+
+    Label:
+        text: "Gravity Calculator"
+        font_size: 100
+    BoxLayout:
+        orientation: "horizontal"
+        Label:
+            text: "Mass #1:"
+            font_size: 50
+        TextInput:
+            id: mass1
+            size_hint_x: 1
+            input_filter: "float"
+        Label:
+            text: "Mass #2:"
+            font_size: 50
+        TextInput:
+            id: mass2
+            size_hint_x: 1
+            input_filter: "float"
+

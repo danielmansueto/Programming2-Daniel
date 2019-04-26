@@ -1,0 +1,59 @@
+<HypotenuseLayout>:
+    orientation: "vertical"
+    id: calculator
+    side1: side_1
+    side2: side_2
+    answer: answer
+    canvas:
+        Color:
+            rgba: [0.705, 0.768, 0.933, 1]
+        Rectangle:
+            pos: self.x, self.y + self.height * 0.6
+            size: self.width, self.height * 0.4
+    Label:
+        color: [0.172, 0.196, 0.447, 1]
+        text: "Hypotenuse Calculator"
+        size_hint_y: 2
+        font_size: 150
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 1
+        Label:
+            background_color: [0.705, 0.768, 0.933 ,1]
+            text: "Side 1"
+            size_hint_x: 1
+            font_size: 40
+        TextInput:
+            id: side_1
+            size_hint_x: 3
+            input_filter: "float"
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 1
+        Label:
+            text: "Side 2"
+            size_hint_x: 1
+            font_size: 40
+        TextInput:
+            id: side_2
+            size_hint_x: 3
+            input_filter: "float"
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 1
+        color: [0.705, 0.768, 0.933 ,1]
+        Button:
+            size_hint_x: 2
+            text: "Calculate"
+            font_size: 40
+            on_press: calculator.calculate()
+        Label:
+            text: "Hypotenuse:"
+            font_size: 40
+        Label:
+            id: answer
+            text: "0"
+            font_size: 40
