@@ -36,10 +36,17 @@ class GravityCalculatorLayout(BoxLayout):
     def calculate(self):
         try:
             gravity = 6.67e-11 * (int(self.mass1.text) * int(self.mass2.text)) / int(self.distance.text) ** 2
-            answer = eval(gravity)
             self.display.text = 'F= {:.2e}'.format(gravity)
-        except:
+        except ZeroDivisionError:
+            self.display.text = "same position"
+            self.display.font_size = 30
+        except OverflowError:
+            self.display.font_size = 30
             self.display.text = "sorry something went wrong"
+        except:
+            self.display.font_size = 30
+            self.display.text = "sorry something went wrong"
+
 
 if __name__ == "__main__":
     app = GravityApp()
