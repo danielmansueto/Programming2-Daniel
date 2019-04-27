@@ -27,14 +27,20 @@ from kivy.core.window import Window
 
 Window.size = (600, 400)
 
-class GravityCalculator(App):
+class GravityApp(App):
     def build(self):
         return GravityCalculatorLayout()
 
 class GravityCalculatorLayout(BoxLayout):
     # root widget
-    pass
+    def calculate(self):
+        try:
+            gravity = 6.67e-11 * (int(self.mass1.text) * int(self.mass2.text)) / int(self.distance.text) ** 2
+            answer = eval(gravity)
+            self.display.text = 'F= {:.2e}'.format(gravity)
+        except:
+            self.display.text = "sorry something went wrong"
 
 if __name__ == "__main__":
-    app = GravityCalculator()
+    app = GravityApp()
     app.run()

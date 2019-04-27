@@ -3,24 +3,65 @@
     id: calculator
     mass1: mass1
     mass2: mass2
+    distance: distance
+    display: display
 
     Label:
-        text: "Gravity Calculator"
+        text: "GRAVITY CALCULATOR"
         font_size: 100
     BoxLayout:
         orientation: "horizontal"
         Label:
-            text: "Mass #1:"
+            text: "Mass #1 (kg):"
+            font_size: 20
+            size_hint_x: 1
             font_size: 50
         TextInput:
             id: mass1
-            size_hint_x: 1
             input_filter: "float"
+            size_hint_x: 2
+            font_size: 110
+
+    BoxLayout:
+        orientation: "horizontal"
         Label:
-            text: "Mass #2:"
+            text: "Mass #2 (kg):"
+            font_size: 20
+            size_hint_x: 1
             font_size: 50
         TextInput:
             id: mass2
-            size_hint_x: 1
             input_filter: "float"
+            size_hint_x: 2
+            font_size: 110
+
+    BoxLayout:
+        orientation: "horizontal"
+        Label:
+            text: "Distance between the two:"
+            font_size: 20
+            size_hint_x: 1
+            font_size: 30
+        TextInput:
+            id: distance
+            input_filter: "float"
+            size_hint_x: 2
+            font_size: 110
+
+    BoxLayout:
+        orientation: "horizontal"
+        Button:
+            text: 'Calculate'
+            font_size: 50
+            size_hint_x: 1
+            on_press: calculator.calculate()
+            background_color: 1, .3, 0, 1
+        Label:
+            id: display
+            text: ""
+            font_size: 50
+            size_hint_x: 2
+
+
+
 
