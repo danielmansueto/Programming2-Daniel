@@ -1,0 +1,30 @@
+<CustomLabel@Label>:
+    color: 0,0,0,1
+
+<DemoLayout>:
+    orientation: "vertical"
+    id: demo
+    switch_text: switch_text
+    slider_text: slider_text
+    BoxLayout:
+        orientation: "horizontal"
+        CustomLabel:
+            id: switch_text
+            text: str(switch.active)
+        Switch:
+            active: False
+            id: switch
+            on_active: demo.switch_on(self, self.active)
+
+    BoxLayout:
+        orientation: "horizontal"
+        CustomLabel:
+            id: slider_text
+            text: "{:.2f}".format(slider.value)
+        Slider:
+            id: slider
+            min: 0
+            max: 1
+            value: 0
+            step: .01
+            slider_change: demo.slider_change(self, self.value)
