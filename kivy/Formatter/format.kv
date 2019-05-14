@@ -1,0 +1,106 @@
+<FormatLayout>:
+    orientation: "vertical"
+    label: label
+    spinner: spinner
+
+    Label:
+        id: label
+        text: "Welcome"
+        font_size: 100
+        font_name: "Roboto-BoldItalic.ttf"
+
+    BoxLayout:
+        Label:
+            text: "Choose a font:"
+            font_size: 75
+        Spinner:
+            id: spinner
+            text: "Font Type"
+            font_name: "Roboto-Regular.ttf"
+            font_size: 75
+            values: ["Regular", "Italic", "Bold", "Bold Italic"]
+            on_text: root.font_change(self.text)
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text: "Select a Language:"
+            font_size: 50
+            size_hint_x: 4
+        Label:
+            font_size: 30
+            text: 'English'
+        CheckBox:
+            group: 'text'
+            on_active: root.text_change('Hello')
+        Label:
+            font_size: 30
+            text: 'Spanish'
+        CheckBox:
+            group: 'text'
+            on_active: root.text_change('Hola')
+        Label:
+            font_size: 30
+            text: 'French'
+        CheckBox:
+            group: 'text'
+            on_active: root.text_change('Bonjour')
+        Label:
+            font_size: 30
+            text: 'Lorem Ipsum'
+        CheckBox:
+            group: 'text'
+            on_active: root.text_change('Lorem ipsum dolor sit amet')
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Label:
+            text: "Red:"
+            font_size: 50
+            color: 1, 0, 0, 1
+        Slider:
+            min: 0
+            max: 1
+            value: 0
+            step: .05
+            id: red
+            on_touch_move: root.change_window(self.value, green.value, blue.value)
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Label:
+            text: "Green:"
+            font_size: 50
+            color: 0, 1, 0, 1
+        Slider:
+            min: 0
+            max: 1
+            value: 0
+            step: .05
+            id: green
+            on_touch_move: root.change_window(red.value, self.value, blue.value)
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Label:
+            text: "Blue:"
+            font_size: 50
+            color: 0, 0, 1, 1
+        Slider:
+            min: 0
+            max: 1
+            value: 0
+            step: .05
+            id: blue
+            on_touch_move: root.change_window(red.value, green.value, self.value)
+
+    BoxLayout:
+        Label:
+            text: "Text Color:"
+            font_size: 75
+        Switch:
+            active: False
+            on_active: root.text_on(self.active)

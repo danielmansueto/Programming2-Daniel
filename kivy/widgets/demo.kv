@@ -1,6 +1,15 @@
 <CustomLabel@Label>:
     color: 0,0,0,1
 
+<CustomPopup@Popup>:
+    size_hint_x: 1
+    size_hint_y: 1
+    auto_dismiss: False
+    Button:
+        text: "close me"
+        on_press: root.dismiss()
+
+
 <DemoLayout>:
     orientation: "vertical"
     id: demo
@@ -28,3 +37,61 @@
             value: 0
             step: .01
             slider_change: demo.slider_change(self, self.value)
+
+    BoxLayout:
+        orientation: "horizontal"
+        CustomLabel:
+            id: check_text
+            text: "check box"
+        CheckBox:
+            on_active: root.check_box(self.active)
+
+    BoxLayout:
+        orientation: "horizontal"
+        CustomLabel:
+            id: radio_text
+            size_hint_x: 3
+            text: "choose your favorite:"
+        CustomLabel:
+            text: "ice cream"
+        CheckBox:
+            group: "favorite"
+
+        CustomLabel:
+            text: "cake"
+        CheckBox:
+            group: "favorite"
+
+    BoxLayout:
+        orientation: "horizontal"
+
+    # ADD POPUP HERE
+
+    BoxLayout:
+        orientation: "horizontal"
+
+        TabbedPanel:
+            do_default_tab: False
+
+            TabbedPanelItem:
+                text: "1st Tab"
+                Label:
+                    text: "content of first tab"
+            TabbedPanelItem:
+                text: "2nd Tab"
+                Label:
+                    text: "content of second tab"
+            TabbedPanelItem:
+                text: "3rd Tab"
+                Label:
+                    text: "content of third tab"
+
+    BoxLayout:
+        orientation: "horizontal"
+        CustomLabel:
+            text: spinner.text
+        Spinner:
+            id: spinner
+            text: "first"
+            values: ["first", "second", "third"]
+            on_text: root.spinner_clicked(self.text)
